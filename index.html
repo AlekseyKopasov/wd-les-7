@@ -428,6 +428,293 @@
     </div>
   </section>
 
+  <!-- TODO Логические операторы -->
+  <section class="slide">
+    <h2>Логические операторы</h2>
+    <ul>
+      <li>Логическое И <mark>&&</mark></li>
+      <li>Логическое ИЛИ <mark>||</mark></li>
+      <li>Логическое НЕ <mark>!</mark></li>
+    </ul>
+  </section>
+
+  <!-- TODO Условное ветвление -->
+  <section class="slide">
+    <h2>Условное ветвление</h2>
+    <p>Иногда нам нужно выполнить различные действия в зависимости от условий</p>
+    <pre>
+      <code>if (year == '2024') {</code>
+      <code>  console.log("Это текущий год");</code>
+      <code>}</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Преобразование к логическому типу</h2>
+    <ol>
+      <li>Число <b>0</b>, пустая строка <b>""</b>, <b>null</b>, <b>undefined</b> и <b>NaN</b> становятся <mark>false</mark>. Из-за этого их называют «ложными» («falsy») значениями</li>
+      <li>Остальные значения становятся <mark>true</mark>, поэтому их называют «правдивыми» («truthy»)</li>
+    </ol>
+    <pre>
+      <code>if ("Строка") { // "Строка" преобразовывается в <mark>true</mark></code>
+      <code>  console.log("Это правдивое значение");</code>
+      <code>}</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Блок «else»</h2>
+    <pre>
+      <code>if (year === '2024') {</mark></code>
+      <code>  console.log("Это верно");</code>
+      <code>} <mark>else</mark> {</code>
+      <code>  console.log("Это не верно");</code>
+      <code>}</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Блок «else if»</h2>
+    <pre>
+      <code>if (age < 18) {</mark></code>
+      <code>  console.log('Потребовать паспорт');</code>
+      <code>} <mark>else if</mark> (age >= 18 && age < 30) {</mark></code>
+      <code>  console.log('Потребовать паспорт (на всякий случай)');</code>
+      <code>} else {</code>
+      <code>  console.log('Предложить скидку');</code>
+      <code>}</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Условный (тернарный) оператор</h2>
+    <p><mark>condition ? val1 : val2</mark></p>
+    <pre>
+      <code> age >= 18 ? alert('Потребовать паспорт') : alert('Предложить скидку');</mark></code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>switch</h2>
+    <pre style="font-size: 16px;">
+      <code>switch(x) {</code>
+      <code>  case 'value1':  // if (x === 'value1')</code>
+      <code>    ...</code>
+      <code>    [break]</code>
+      <code>  case 'value2':  // if (x === 'value2')</code>
+      <code>    ...</code>
+      <code>    [break]</code>
+      <code>  default</code>
+      <code>    ...</code>
+      <code>    [break]</code>
+      <code>}</code>
+    </pre>
+  </section>
+
+  <!-- TODO Циклы -->
+  <section class="slide">
+    <h2>Циклы</h2>
+    <ol>
+      <li>for</li>
+      <li>while</li>
+      <li>do while</li>
+      <li>forEach</li>
+      <li>...</li>
+    </ol>
+  </section>
+
+  <section class="slide">
+    <h2>Цикл for</h2>
+    <pre>
+      <code>for (начало; условие; шаг) {</code>
+      <code>  // ... тело цикла ...</code>
+      <code>}</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Цикл while/do..while</h2>
+    <div class="columns two">
+      <pre>
+        <code>while (condition) {</code>
+        <code>  // ... тело цикла ...</code>
+        <code>}</code>
+      </pre>
+      <pre>
+        <code>do {</code>
+        <code>  // ... тело цикла ...</code>
+        <code>} while (condition);</code>
+      </pre>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>Цикл forEach</h2>
+    <pre>
+      <code>array.forEach((item, index, arr) => {</code>
+      <code>  // ... тело цикла ...</code>
+      <code>})</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Прерывание цикла</h2>
+    <p>Обычно цикл завершается при вычислении условия в <b>false</b>. Но мы можем выйти из цикла в любой момент с помощью специальной директивы <mark>break</mark>
+      </p>
+    <pre style="font-size: 16px;">
+      <code>for (let i = 0; i < 10; i++) {</code>
+      <code>  if (i == 5) {</code>
+      <code>    <mark>break;</mark></code>
+      <code>  }</code>
+      <code>  // что-то делаем</code>
+      <code>}</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Переход к следующей итерации</h2>
+    <p>При выполнении директивы <mark>continue</mark> цикл не прерывается, а переходит к следующей итерации</p>
+    <pre style="font-size: 16px;">
+      <code>for (let i = 0; i < 10; i++) {</code>
+      <code>  if (i % 2 == 0) <mark>continue</mark>;</code>
+      <code>  // что-то делаем</code>
+      <code>}</code>
+    </pre>
+  </section>
+
+  <!-- TODO Массивы -->
+  <section class="slide">
+    <h2>Массивы</h2>
+    <p><b>Массив</b> (объект Array) — структура данных, которая позволяет хранить коллекцию из нескольких элементов</p>
+    <pre>
+      <code>const cats = ['Murzik', 'Barsik'];</code>
+      <code>const nums = [42, 1, -5, 0];</code>
+      <code>const some = [81, 'message', true, { a: 1, b: 2}, [0, 1]];</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Создание массивов </h2>
+    <pre>
+      <code>let arr1 = new Array();</code>
+      <code>let arr2 = ['white', 'blue', 'red'];</code>
+    </pre>
+    <p>Чтобы получить элемент, указав его номер в квадратных скобках</p>
+    <pre>
+      <code>console.log(arr2[0])</code>
+      <code>console.log(arr2[1])</code>
+      <code>console.log(arr2[2])</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Методы массивов</h2>
+    <p><mark>arr.[название метода]()</mark></p>
+    <ol>
+      <li><b>pop</b> — удаляет последний элемент из массива</li>
+      <li><b>push</b> — добавляет элемент в конец массива</li>
+      <li><b>shift</b> — удаляет из массива первый элемент</li>
+      <li><b>unshift</b> — добавляет элемент в начало массива</li>
+    </ol>
+  </section>
+
+  <section class="slide">
+    <h2>Перебор элементов массива</h2>
+    <p>Для массивов возможен также перебор с помощью цикла <mark>for..of</mark></p>
+    <pre>
+      <code><mark>for</mark> (let color <mark>of</mark> colors) {</code>
+      <code>  console.log( color );</code>
+      <code>}</code>
+    </pre>
+    <p>Цикл for..of не предоставляет доступа к номеру текущего элемента, только к его значению</p>
+  </section>
+
+  <!-- TODO Объекты -->
+  <section class="slide">
+    <h2>Объекты</h2>
+    <p><b>Объекты</b> – это ассоциативные массивы с рядом дополнительных возможностей. Они хранят свойства (пары ключ-значение), где:</p>
+    <ul>
+      <li><b>ключи</b> свойств должны быть строками или символами</li>
+      <li><b>значения</b> могут быть любого типа</li>
+    </ul>
+    <pre style="font-size: 16px;">
+      <code>const messages = {</code>
+      <code>  'msg': 'Ошибка доступа' <mark class="important">,</mark></code>
+      <code>  'code': 0</code>
+      <code>}</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Объекты</h2>
+    <p>Чтобы получить доступ к свойству, мы можем использовать:</p>
+
+    <ol>
+      <li><b>obj.property</b> — через точку</li>
+      <li><b>obj["property"]</b> — с помощью квадратных скобок</li>
+    </ol>
+    <pre>
+      <code>console.log(messages.code) // "0"</code>
+      <code>console.log(messages['msg']) // "Ошибка доступа"</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Перебор свойств объекта</h2>
+    <p>Для объектов возможен перебор с помощью цикла <mark>for..in</mark></p>
+    <pre>
+      <code><mark>for</mark> (let item <mark>in</mark> colors) {</code>
+      <code>  console.log( colors[item] );</code>
+      <code>}</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Создание объектов</h2>
+    <p>Обычно используют вариант с фигурными скобками {...}. Такое объявление называют литералом объекта или литеральной нотацией</p>
+    <pre>
+      <code>const a = {}</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Строковые объекты</h2>
+    <p>Содержимое строки в JavaScript нельзя изменить. Можно создать новую строку и записать её в ту же самую переменную вместо старой</p>
+  </section>
+
+  <section class="slide">
+    <h2>Кавычки</h2>
+    <ol>
+      <li><b><mark>'</mark></b> — одинарные</li>
+      <li><b><mark>"</mark></b> — двойные</li>
+      <li><b><mark>`</mark></b> — обратные</li>
+    </ol>
+  </section>
+
+  <section class="slide">
+    <h2>Длина строки</h2>
+    <p>Свойство <b>length</b> содержит длину строки</p>
+    <pre>
+      <code>let a = 'text'</code>
+      <code>console.log(a.lenght) // 4</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Изменение регистра</h2>
+    Методы toLowerCase() и toUpperCase() меняют регистр символов:
+    alert( 'Interface'.toUpperCase() ); // INTERFACE
+    alert( 'Interface'.toLowerCase() ); // interface
+
+    Для поиска подстроки используйте indexOf или includes/startsWith/endsWith, когда надо только проверить, есть ли вхождение.
+    Строки также имеют ещё кое-какие полезные методы:
+    •	str.trim() — убирает пробелы в начале и конце строки.
+    •	str.repeat(n) — повторяет строку n раз.
+
+  </section>
+
+
+
 
   <!-- TODO Example -->
   <section class="slide">
