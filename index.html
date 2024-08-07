@@ -701,15 +701,37 @@
   </section>
 
   <section class="slide">
-    <h2>Изменение регистра</h2>
-    Методы toLowerCase() и toUpperCase() меняют регистр символов:
-    alert( 'Interface'.toUpperCase() ); // INTERFACE
-    alert( 'Interface'.toLowerCase() ); // interface
+    <h2>Методы для работы со строками</h2>
+    <p>Методы <b>toLowerCase()</b> и <b>toUpperCase()</b> меняют регистр символов:</p>
+    <pre>
+      <code>console.log( 'Text'.toUpperCase() ); // TEXT</code>
+      <code>console.log( 'Text'.toLowerCase() ); // text</code>
+    </pre>
+  </section>
 
-    Для поиска подстроки используйте indexOf или includes/startsWith/endsWith, когда надо только проверить, есть ли вхождение.
-    Строки также имеют ещё кое-какие полезные методы:
-    •	str.trim() — убирает пробелы в начале и конце строки.
-    •	str.repeat(n) — повторяет строку n раз.
+  <section class="slide">
+    <h2>Методы для работы со строками</h2>
+    <p>Для поиска подстроки используйте <b>indexOf</b> или <b>includes/startsWith/endsWith</b>, когда надо только проверить, есть ли вхождение</p>
+    <pre>
+      <code>let str = 'Some text';</code>
+      <code>console.log(str.indexOf('Some')); // 0 </code>
+      <code>console.log(str.includes('Some')); // true </code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Получение подстроки</h2>
+    <p>substring, substr и slice</p>
+
+    <ol>
+      <li><b>slice(start, end)</b>: ищет от start до end (не включая end)</li>
+      <li><b>substring(start, end)</b>: ищет между start и end (не включая end)</li>
+      <li><b>substr(start, length)</b>: ищет length символов, начиная от start</li>
+    </ol>
+  </section>
+
+  <section class="slide">
+    <h2>Сравнение строк</h2>
 
   </section>
 
