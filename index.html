@@ -912,8 +912,199 @@
 
   <section class="slide">
     <h2>DOM</h2>
-    <p>DOM (Document Object Model) — это структура, которая создается браузером при загрузке страницы</p>
+    <p>DOM (Document Object Model) — это структура, которая создается браузером при загрузке страницы на основе HTML-кода страницы</p>
+    <div class="columns two">
+      <div class="flex col">
+        <span>Свойства</span>
+        <pre>
+          <code><mark>document</mark>.title</code>
+          <code><mark>document</mark>.forms</code>
+          <code><mark>document</mark>.body</code>
+          <code><mark>document</mark>.head</code>
+        </pre>
+      </div>
+      <div class="flex col">
+        <span>Методы</span>
+        <pre>
+          <code><mark>document</mark>.getElementById</code>
+          <code><mark>document</mark>.getElementsByClassName</code>
+          <code><mark>document</mark>.getElementsByTagName</code>
+          <code><mark>document</mark>.querySelector</code>
+          <code><mark>document</mark>.querySelectorAll</code>
+        </pre>
+      </div>
+    </div>
   </section>
+
+  <section class="slide">
+    <h2>DOM</h2>
+    <img src="img/dom.png" width="auto" height="100%" alt="" style="
+      max-height: 380px;
+      display: flex;
+    ">
+  </section>
+
+  <section class="slide">
+    <h2>Доступ к элементам DOM</h2>
+    <ol>
+      <li><b>getElementById</b>: поиск элемента по идентификатору</li>
+      <li><b>getElementsByClassName</b>: поиск элементов по названию класса</li>
+      <li><b>getElementsByTagName</b>: поиск элементов по названию тега</li>
+      <li><b>querySelector</b>: поиск первого элемента, подходящего под CSS-селектор</li>
+      <li><b>querySelectorAll</b>: поиск всех элементов подходящих под CSS-селектор</li>
+    </ol>
+  </section>
+
+  <section class="slide">
+    <h2>Доступ к элементам DOM</h2>
+    <pre>
+      <code>document.querySelector('#block');</code>
+      <code>document.querySelector('.block');</code>
+      <code>document.querySelector('div');</code>
+      <code>document.querySelector('[type="text"]');</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Создание новых HTML элементов (узлов)</h2>
+    <pre>
+      <code>let elem = document.createElement('p');</code>
+      <code>let node = document.createTextNode('Это новый параграф');</code>
+      <code>elem.appendChild(node);</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Удаление существующих HTML элементов</h2>
+    <p>
+      <mark>
+        <span>Текст 1</span>
+        <span>Текст 2</span>
+        <span>Текст 3</span>
+        <span>Текст 4</span>
+      </mark>
+    </p>
+    <pre style="font-size: 16px;">
+      <code>&lt;p&gt;</code>
+      <code>  &lt;span&gt;Текст 1&lt;/span&gt;</code>
+      <code>  &lt;span&gt;Текст 2&lt;/span&gt;</code>
+      <code>  &lt;span&gt;Текст 3&lt;/span&gt;</code>
+      <code>  &lt;span&gt;Текст 4&lt;/span&gt;</code>
+      <code>&lt;/p&gt;</code>
+    </pre>
+    <pre style="font-size: 16px;">
+      <code>let parent = document.querySelector('p');</code>
+      <code>let child = <mark>parent</mark>.querySelector('span');</code>
+      <code>parent.removeChild(child);</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Замена HTML элемента</h2>
+    <pre>
+      <code>let elem = document.createElement('p');</code>
+      <code>let node = document.createTextNode('Новый параграф');</code>
+      <code>elem.appendChild(node);</code>
+      <code> </code>
+      <code>let parent = document.querySelector('.block');</code>
+      <code>let child = parent.querySelector('.inner-block');</code>
+      <code>parent.replaceChild(elem, child);</code>
+    </pre>
+  </section>
+
+   <!-- TODO Cобытия -->
+  <section class="slide">
+    <h2>Cобытия</h2>
+    <p>Событие – это сигнал от браузера о том, что что-то произошло</p>
+  </section>
+
+  <section class="slide">
+    <h2>Cобытия</h2>
+    <div class="flex col">
+      <span><mark>События мыши</mark>:</span>
+      <ul>
+        <li>click</li>
+        <li>contextmenu</li>
+        <li>mouseover / mouseout</li>
+        <li>mousedown / mouseup</li>
+        <li>mousemove</li>
+        <li>...</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>Cобытия</h2>
+    <div class="flex col">
+      <span><mark>События на элементах управления</mark>:</span>
+      <ul>
+        <li>submit</li>
+        <li>focus</li>
+        <li>blur</li>
+        <li>...</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>Cобытия</h2>
+    <div class="flex col">
+      <span><mark>Клавиатурные события</mark>:</span>
+      <ul>
+        <li>keydown</li>
+        <li>keyup</li>
+        <li>keypress</li>
+        <li>...</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>Cобытия</h2>
+    <div class="flex col">
+      <span><mark>События документа</mark>:</span>
+      <ul>
+        <li>DOMContentLoaded</li>
+        <li>...</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>Cобытия</h2>
+    <div class="flex col">
+      <span><mark>CSS events</mark>:</span>
+      <ul>
+        <li>transitionend</li>
+        <li>...</li>
+      </ul>
+    </div>
+  </section>
+
+   <!-- TODO Обработчики событий -->
+  <section class="slide">
+    <h2>Обработчики событий</h2>
+    <p><b>Обработчик события</b> — функция, которая сработает, как только событие произойдет</p>
+    <pre>
+      <code>element.addEventListener(event, handler, [options]);</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Объект события</h2>
+    <p>Когда происходит событие, браузер создаёт <b>объект события</b>, записывает в него детали и передаёт его в качестве аргумента функции-обработчику</p>
+    <pre>
+      <code>document.addEventListener('click', ( <mark class="ignore">event</mark> ) => {</code>
+      <code>  console.log('Объект события (event) -->', <mark class="ignore">event</mark> );</code>
+      <code>})</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Всплытие и перехват событий</h2>
+  </section>
+
+
 
 
 

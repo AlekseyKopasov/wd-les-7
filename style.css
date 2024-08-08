@@ -149,6 +149,14 @@ cite.small {
   opacity: 1;
 }
 
+.flex {
+  display: flex;
+}
+
+.flex.col {
+  flex-direction: column;
+}
+
 @keyframes circle-to-square {
   from {
     width: 50px;
