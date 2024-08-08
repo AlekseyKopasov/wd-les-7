@@ -732,7 +732,187 @@
 
   <section class="slide">
     <h2>Сравнение строк</h2>
+    <p>Строки сравниваются посимвольно в алфавитном порядке, но:</p>
+    <ol>
+      <li>строчные буквы больше заглавных</li>
+      <li>буквы, имеющие диакритические знаки, могут идти &laquo;не&nbsp;по&nbsp;порядку&raquo;</li>
+    </ol>
 
+    <pre>
+      <code>console.log('z' > 'a') // false</code>
+      <code>console.log('a' > 'Z') // true</code>
+      <code>console.log('Österreich' > 'Zealand') // true</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Правильное сравнение строк</h2>
+    <p>все современные браузеры поддерживают стандарт ECMA 402, обеспечивающий правильное сравнение строк на разных языках с учётом их правил</p>
+
+    <pre>
+      <code><mark>str.localeCompare(str2)</mark> // вернет число</code>
+    </pre>
+    <ul>
+      <li>0, если строки равны</li>
+      <li>положительное число, если str больше str2</li>
+      <li>отрицательное число, если str меньше str2</li>
+    </ul>
+  </section>
+
+  <!-- TODO Математические функции -->
+  <section class="slide">
+    <h2>Объект Math</h2>
+
+    <div class="columns two">
+     <div style="display: flex; flex-direction: column;">
+      <span style="text-decoration: underline;">Свойства:</span>
+      <ul>
+        <li>Math.PI</li>
+        <li>Math.SQRT1_2</li>
+        <li>Math.SQRT2</li>
+        <li>...</li>
+      </ul>
+     </div>
+     <div style="display: flex; flex-direction: column;">
+      <span style="text-decoration: underline;">Методы:</span>
+      <ul>
+        <li>Math.abs(x)</li>
+        <li>Math.max([x[, y[, …]]])</li>
+        <li>Math.random()</li>
+        <li>...</li>
+      </ul>
+     </div>
+    </div>
+  </section>
+
+  <!-- TODO Дата и время -->
+  <section class="slide">
+    <h2>Дата и время</h2>
+    <pre>
+      <code>let date = new Date();</code>
+    </pre>
+    <div style="display: flex; flex-direction: column;">
+      <span style="text-decoration: underline;">Методы:</span>
+      <ul style="font-size: 20px;">
+        <li><b>getFullYear()</b>: получить год (4 цифры)</li>
+        <li><b>getMonth()</b>: получить месяц, от 0 до 11</li>
+        <li><b>getDate()</b>: получить день месяца, от 1 до 31</li>
+        <li><b>getHours(), getMinutes(), getSeconds(), getMilliseconds()</b>: получить, соответственно, часы, минуты, секунды или миллисекунды</li>
+        <li><b> Date.now()</b>: возвращает текущую метку времени</li>
+      </ul>
+     </div>
+  </section>
+
+  <!-- TODO Функции -->
+  <section class="slide">
+    <h2>Функции</h2>
+    <p>Функция — специальный тип объектов, позволяющий описать средствами языка определённую повторяющуюся логику поведения</p>
+    <pre>
+      <code><b>function</b> <span style="color: rgb(24, 148, 219);">sayHello</span>() {</code>
+      <code>  console.log('Привет!');</code>
+      <code>}</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Функции</h2>
+    <p>В функцию можно передавать параметры</p>
+    <pre>
+      <code>function sayHello(<b>name</b>) {</code>
+      <code>  console.log('Привет!' + <b>name</b>);</code>
+      <code>}</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Функции</h2>
+    <p>Функция может возвращать значение</p>
+    <pre>
+      <code>function calcSum(a, b) {</code>
+        <code>  <b>return</b> a + b;</code>
+      <code>}</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Функции</h2>
+    <p>Функции являются основными строительными блоками скриптов</p>
+  </section>
+
+  <section class="slide">
+    <h2>Функциональное выражение (Function Expression)</h2>
+    <div class="columns two">
+      <div>
+        <span>Function Declaration</span>
+        <pre>
+          <code><b>function</b> <span style="color: rgb(24, 148, 219);">sayHello</span>() {</code>
+          <code>  console.log('Привет!');</code>
+          <code>}</code>
+        </pre>
+      </div>
+      <div>
+        <span>Function Expression</span>
+        <pre>
+          <code>let <span style="color: rgb(24, 148, 219);">hello</span> = <b>function</b>() {</code>
+          <code>  console.log('Привет!');</code>
+          <code>}</code>
+        </pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <h2>Стрелочные функции</h2>
+    <div class="columns two">
+     <div>
+      <span>Function Declaration</span>
+      <pre>
+        <code><b>function</b> <span style="color: rgb(24, 148, 219);">calcSum</span>(a, b) {</code>
+        <code>  return a + b;</code>
+        <code>}</code>
+      </pre>
+     </div>
+      <div>
+        <span>Arrow Functions</span>
+        <pre>
+          <code>let <span style="color: rgb(24, 148, 219);">calcSum</span> = () <b>=></b> a + b;</code>
+        </pre>
+        <span> или так:</span>
+        <pre>
+          <code>let <span style="color: rgb(24, 148, 219);">calcSum</span> = () <b>=></b> {</code>
+          <code>  return a + b;</code>
+          <code>}</code>
+        </pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- TODO Контекст вызова функции -->
+  <section class="slide">
+    <h2>Контекст вызова функции</h2>
+    <p>Контекст выполнения ( <b>execution context</b> ) — это окружение, в котором производится выполнение кода на JavaScript</p>
+    <ul>
+      <li>Глобальный контекст выполнения</li>
+      <li>Контекст выполнения функции</li>
+      <li>Контекст выполнения функции eval</li>
+    </ul>
+  </section>
+
+  <!-- TODO Замыкание -->
+  <section class="slide">
+    <h2>Замыкание</h2>
+    <p>Функция «запоминает» окружение, в котором она была создана</p>
+  </section>
+
+  <!-- TODO DOM -->
+  <section class="slide">
+    <h2>DOM</h2>
+    <img src="img/dom" alt="DOM">
+  </section>
+
+  <section class="slide">
+    <h2>DOM</h2>
+    <p>DOM (Document Object Model) — это структура, которая создается браузером при загрузке страницы</p>
   </section>
 
 
