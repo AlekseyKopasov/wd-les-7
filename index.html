@@ -907,11 +907,6 @@
   <!-- TODO DOM -->
   <section class="slide">
     <h2>DOM</h2>
-    <img src="img/dom" alt="DOM">
-  </section>
-
-  <section class="slide">
-    <h2>DOM</h2>
     <p>DOM (Document Object Model) — это структура, которая создается браузером при загрузке страницы на основе HTML-кода страницы</p>
     <div class="columns two">
       <div class="flex col">
@@ -1102,27 +1097,526 @@
 
   <section class="slide">
     <h2>Всплытие и перехват событий</h2>
+    <img src="img/events.svg" width="100%" height="100%" alt="" style="
+      max-height: 370px;
+      margin: 0 auto;
+      display: flex;
+      object-fit: contain;
+    ">
+     <cite class="small" >Источник <a href="https://learn.javascript.ru/bubbling-and-capturing" target="_blank">JavaScript.ru</a></cite>
   </section>
 
+  <section class="slide">
+    <h2>Всплытие</h2>
+    <pre>
+      <code>&lt;div onclick=&quot;alert('div outer')&quot;&gt;</code>
+      <code>  &lt;div onclick=&quot;alert('div inner')&quot;&gt;</code>
+      <code>    &lt;p onclick=&quot;alert('paragraph')&quot;&gt;Текст&lt;/p&gt;</code>
+      <code>  &lt;/div&gt;</code>
+      <code>&lt;/div&gt;</code>
+    </pre>
+    <div onclick="alert('div outer')">
+      <div onclick="alert('div inner')">
+        <p onclick="alert('paragraph')"
+          style="
+            text-align: center;
+            border: 1px solid #ccc;
+            background-color: rgba(204, 204, 204, 0.3);
+            "
+          >Текст</p>
+      </div>
+    </div>
+  </section>
 
+  <section class="slide">
+    <h2>Всплытие</h2>
+    <p><b>event.target</b> — целевой элемент, который вызывает событие</p>
+  </section>
 
+  <section class="slide">
+    <h2>Всплытие</h2>
+    <p><b>event.target</b> — целевой элемент, который вызывает событие</p>
+    <p><b>event.stopPropagation()</b> — останавливает всплытие события</p>
+  </section>
 
+  <section class="slide">
+    <h2>Всплытие</h2>
+    <p><b>event.target</b> — целевой элемент, который вызывает событие</p>
+    <p><b>event.stopPropagation()</b> — останавливает всплытие события</p>
+    <p><b>event.stopImmediatePropagation()</b> — останавливает всплытие события и останавливает обработку событий на текущем элементе</p>
+  </section>
 
+  <section class="slide">
+    <h2>Погружение</h2>
+    <pre>
+      <code>elem.addEventListener(..., {capture: true})</code>
+      <code>// или просто "true"</code>
+      <code>elem.addEventListener(..., true)</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Погружение</h2>
+
+    <div class="columns two" s>
+      <pre style="font-size: 16px;">
+        <code>html -> body -> ...</code>
+        <code> ... </code>
+        <code>&lt;div&gt; <span style="color: #831b1b;">outer div</span></code>
+        <code>  &lt;div&gt; <span style="color: #1b3c83;">inner div</span></code>
+        <code>    &lt;p&gt;<span style="color: #60ad17;">paragraph</span>&lt;/p&gt;</code>
+        <code>  &lt;/div&gt;</code>
+        <code>&lt;/div&gt;</code>
+      </pre>
+      <div style="padding: 7px;border: 1px solid #12b9a3; color: #831b1b;"> outer div
+        <div style="padding: 7px;border: 1px solid #12b9a3; color: #1b3c83;"> inner div
+          <p style="padding: 7px;border: 1px solid #12b9a3;  color: #60ad17;">paragraph</p>
+        </div>
+      </div>
+    </div>
+    <pre style="margin-top: 24px; font-size: 16px;">
+      <code>for (let elem of document.querySelectorAll('*')) {</code>
+      <code> elem.addEventListener('click', e => alert(`Погружение: ${elem.tagName}`), <mark class="ignore"> true </mark>);</code>
+      <code> elem.addEventListener('click', e => alert(`Всплытие: ${elem.tagName}`));</code>
+      <code>}</code>
+    </pre>
+  </section>
 
   <!-- TODO Example -->
   <section class="slide">
-    <h2>Example</h2>
-    <img src="img/form.jpg" width="auto" height="100%" alt="" style="
-      max-height: 380px;
-      margin: 0 auto;
-      display: flex;
-    ">
+    <h2>Делегирование событий</h2>
+    <table class="table-example">
+      <thead>
+        <tr>
+          <td>Заголовок 1</td>
+          <td>Заголовок 2</td>
+          <td>Заголовок 3</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ячейка 1</td>
+          <td>Ячейка 2</td>
+          <td>Ячейка 3</td>
+        </tr>
+        <tr>
+          <td>Ячейка 4</td>
+          <td>Ячейка 5</td>
+          <td>Ячейка 6</td>
+        </tr>
+        <tr>
+          <td>Ячейка 7</td>
+          <td>Ячейка 8</td>
+          <td>Ячейка 9</td>
+        </tr>
+      </tbody>
+    </table>
+    <script>
+      let table = document.querySelector('.table-example');
+
+      table.addEventListener('click', (evt) => {
+        if (evt.target.tagName === 'TD' ) {
+          evt.target.style.backgroundColor = 'rgb(54 161 197)';
+        }
+      });
+    </script>
   </section>
 
+  <section class="slide">
+    <h2>Делегирование событий</h2>
+    <pre>
+      <code>let table = document.querySelector('.table-example');</code>
+      <code>  </code>
+      <code><mark>table</mark>.addEventListener('click', (evt) => {</code>
+      <code>  if (evt.target.tagName === 'TD' ) {</code>
+      <code>    evt.target.style.backgroundColor = 'rgb(54 161 197)';</code>
+      <code>  }</code>
+      <code>});</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Делегирование событий</h2>
+    <ol>
+      <li>меньше кода</li>
+      <li>экономит память</li>
+      <li>удобство изменений DOM</li>
+    </ol>
+  </section>
+
+  <section class="slide">
+    <h2>event submit: отправка формы</h2>
+    <div>
+      <form class="submit-example">
+        <label>
+          Ваш текст:
+        </label>
+        <input type="text">
+        <div class="wrap">
+          <button type="submit">Отправить</button>
+          <button type="reset">Очистить</button>
+        </div>
+        <p>Вы отправили: <span></span></p>
+      </form>
+    </div>
 
 
+    <script>
+      let form = document.querySelector('.submit-example');
+      let input = form.querySelector('input');
+      let output = form.querySelector('span');
 
+      form.addEventListener('submit', (evt) => {
+        evt.preventDefault();
+        if (input.value.length) {
+          output.textContent = input.value;
+        } else {
+          output.textContent = 'ничего';
+        }
+      })
+    </script>
+  </section>
 
+  <section class="slide">
+    <h2>event submit: отправка формы</h2>
+    <pre style="font-size: 16px;">
+      <code>let form = document.querySelector('.submit-example');</code>
+      <code>let input = form.querySelector('input');</code>
+      <code>let output = form.querySelector('span');</code>
+      <code>  </code>
+      <code>form.addEventListener(<mark>'submit'</mark>, (evt) => {</code>
+      <code>  <mark class="ignore">evt.preventDefault();</mark></code>
+      <code>  if (input.value.length) {</code>
+      <code>    output.textContent = input.value;</code>
+      <code>  } else {</code>
+      <code>    output.textContent = 'ничего';</code>
+      <code>  }</code>
+      <code>})</code>
+    </pre>
+  </section>
+
+   <!-- TODO Синхронный код -->
+  <section class="slide">
+    <h2>Синхронный код</h2>
+    <pre>
+      <code><mark>let form = document.querySelector('.submit-example');</mark></code>
+      <code>let input = form.querySelector('input');</code>
+      <code>let output = form.querySelector('span');</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Синхронный код</h2>
+    <pre>
+      <code>let form = document.querySelector('.submit-example');</code>
+      <code><mark>let input = form.querySelector('input');</mark></code>
+      <code>let output = form.querySelector('span');</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Синхронный код</h2>
+    <pre>
+      <code>let form = document.querySelector('.submit-example');</code>
+      <code>let input = form.querySelector('input');</code>
+      <code><mark>let output = form.querySelector('span');</mark></code>
+    </pre>
+  </section>
+
+  <!-- TODO Асинхронный код -->
+  <section class="slide">
+    <h2>Асинхронный код</h2>
+    <div class="asinc-example">
+      <p class="asinc-example__timer">Timer: <span>0</span></p>
+      <div class="asinc-example__wrap">
+        <button class="asinc-example__button">Нажми на меня</button>
+        <p class="asinc-example__out"></p>
+      </div>
+    </div>
+
+    <script>
+      let button = document.querySelector('.asinc-example__button');
+      let out = document.querySelector('.asinc-example__out');
+      let timer = document.querySelector('.asinc-example__timer span');
+
+      button.addEventListener('click', () => {
+        let count = 1;
+
+        let examInterval = setInterval(() => {
+          timer.textContent = `${count}`;
+          count += 1;
+        }, 1000);
+
+        setTimeout(() => {
+          out.textContent = 'Cпустя 3 секунды';
+          clearInterval(examInterval);
+        }, 3000);
+
+        out.textContent = 'Этот текст показался СРАЗУ';
+        out.classList.add('show');
+      });
+    </script>
+  </section>
+
+  <section class="slide">
+    <h2>Асинхронный код</h2>
+
+    <pre style="font-size: 16px;">
+      <code>let button = document.querySelector('.asinc-example__button');</code>
+      <code>let out = document.querySelector('.asinc-example__out');</code>
+      <code>  </code>
+      <code>button.addEventListener('click', () => {</code>
+      <code>  setTimeout(() => {</code>
+      <code>    out.textContent = <mark>'Cпустя 3 секунды'</mark>;</code>
+      <code>  }, 3000)</code>
+      <code>  </code>
+      <code>  out.textContent = <mark>'Этот текст показался СРАЗУ'</mark>;</code>
+      <code>  out.classList.add('show');</code>
+      <code>});</code>
+    </pre>
+  </section>
+
+  <!-- TODO Колбеки -->
+  <section class="slide">
+    <h2>Колбеки</h2>
+    <p><b>Callback</b> (колбэк, функция обратного вызова) — функция, которая вызывается в ответ на совершение некоторого события</p>
+    <pre>
+      <code>function printText () {</code>
+      <code>  out.textContent = 'Cпустя 3 секунды';</code>
+      <code>}</code>
+      <code>  </code>
+      <code>  setTimeout(<mark>pritnText</mark>, 3000)</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Ад колбэков (Callback-hell)</h2>
+    <p><b>Callback</b> (колбэк, функция обратного вызова) — функция, котрая вызывается в ответ на совершение некоторого события</p>
+    <div class="columns two">
+      <div class="asinc-example">
+        <div class="asinc-example__wrap">
+          <button class="asinc-example__button cb">Нажми на меня</button>
+        </div>
+      </div>
+      <pre style="font-size: 14px;">
+        <code>setTimeout(() => {</code>
+        <code>  setTimeout(() => {</code>
+        <code>    setTimeout(() => {</code>
+        <code>       setTimeout(() => {</code>
+        <code>          alert('Отработал setTimeout')</code>
+        <code>        }, 1000)</code>
+        <code>      }, 1000)</code>
+        <code>  }, 1000)</code>
+        <code>}, 1000);</code>
+      </pre>
+    </div>
+
+    <script>
+      let buttonCb = document.querySelector('.cb');
+
+      buttonCb.addEventListener('click', () => {
+        setTimeout(() => {
+          setTimeout(() => {
+            setTimeout(() => {
+              setTimeout(() => {
+                alert('Отработал setTimeout')
+              }, 1000)
+            }, 1000)
+          }, 1000)
+        }, 1000);
+      });
+    </script>
+  </section>
+
+  <!-- TODO Промисы -->
+  <section class="slide">
+    <h2>Промисы</h2>
+    <p><b>Промис</b> — это объект-обёртка для асинхронного кода. Он содержит в себе состояние: вначале <b>pending («ожидание»)</b>, затем — одно из: <b>fulfilled («выполнено успешно»)</b> или <b>rejected («выполнено с ошибкой»)</b></p>
+  </section>
+
+  <section class="slide">
+    <h2>Промисы</h2>
+    <pre>
+      <code>function promiseFunc() {</code>
+      <code>  return new Promise(function (resolve, reject) {</code>
+      <code>    <mark>resolve</mark>( /*...*/)</code>
+      <code> })</code>
+      <code>}</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>Промисы</h2>
+    <pre>
+      <code>promiseFunc()</code>
+      <code>  .then(a => /*...*/)</code>
+      <code>  .then(b => /*...*/)</code>
+      <code>  .then(c => /*...*/)</code>
+    </pre>
+  </section>
+
+  <!-- TODO API -->
+  <section class="slide">
+    <h2>API</h2>
+    <p><b>API</b> (Application Programming Interface — программный интерфейс приложения) — это набор способов и правил, по которым различные программы общаются между собой и обмениваются данными</p>
+  </section>
+
+  <section class="slide">
+    <h2>API</h2>
+    <p><mark>{JSON} Placeholder</mark></p>
+    <div class="asinc-example">
+      <textarea class="out-api"></textarea>
+      <div class="asinc-example__wrap">
+        <button class="asinc-example__button btn-api">Нажми на меня</button>
+      </div>
+    </div>
+    <script>
+      let buttonApi = document.querySelector('.btn-api');
+      let outApi = document.querySelector('.out-api');
+
+      buttonApi.addEventListener('click', () => {
+        fetch('https://jsonplaceholder.typicode.com/posts/1')
+        .then((response) => response.json())
+        .then((json) => {
+          outApi.textContent = JSON.stringify(json);
+          console.log(json)
+        });
+      });
+    </script>
+  </section>
+
+  <section class="slide">
+    <h2>API</h2>
+    <p><mark>{JSON} Placeholder</mark></p>
+    <pre style="font-size: 14px;">
+      <code>let buttonApi = document.querySelector('.btn-api');</code>
+      <code>let outApi = document.querySelector('.out-api');</code>
+      <code>  </code>
+      <code>buttonApi.addEventListener('click', () => {</code>
+      <code>  <mark>fetch</mark>( <mark class="ignore">'https://jsonplaceholder.typicode.com/posts/1'</mark> )</code>
+      <code>    .then((response) => response.json())</code>
+      <code>    .then((json) => {</code>
+      <code>      outApi.textContent = JSON.stringify(json);</code>
+      <code>      console.log(json)</code>
+      <code>    });</code>
+      <code>});</code>
+    </pre>
+  </section>
+
+  <!-- Методы HTTP запроса -->
+  <section class="slide">
+    <h2>Методы HTTP запроса</h2>
+    <ol>
+      <li><mark>GET</mark></li>
+      <li><mark>POST</mark></li>
+      <li>PUT</li>
+      <li>DELETE</li>
+      <li>PATCH</li>
+    </ol>
+  </section>
+
+  <!-- TODO CRUD-операции -->
+  <section class="slide">
+    <h2>CRUD-операции</h2>
+    <ol>
+      <li>Создание</li>
+      <li>Чтение</li>
+      <li>Обновление</li>
+      <li>Удаление</li>
+    </ol>
+    <p>CRUD строят вокруг пользователя или какой-то другой сущности. Для этого создают либо интерфейс с формами, либо HTTP API эндпоинты</p>
+  </section>
+
+  <section class="slide">
+    <h2>CRUD-операции</h2>
+
+    <ul>
+      <li><b>GET</b> (/users) — список пользователей</li>
+      <li><b>GET</b> (/users/1) — информация о пользователе</li>
+      <li><b>POST</b> (/users/add) — добавление пользователя</li>
+      <li><b>PATCH</b> (/users/1) — обновление пользователя</li>
+      <li><b>DELETE</b> (/users/1) — удаление пользователя</li>
+    </ul>
+  </section>
+
+  <!-- TODO Получение данных с сервера -->
+  <section class="slide">
+    <h2>Получение данных с сервера</h2>
+    <pre style="font-size: 14px;">
+      <code>fetch('https://jsonplaceholder.typicode.com/posts', {</code>
+      <code>  method: <mark>'POST'</mark>,</code>
+      <code>  body: JSON.stringify({</code>
+      <code>    title: 'Свой заголовок',</code>
+      <code>    body: 'Какой-то текст',</code>
+      <code>    userId: 1,</code>
+      <code>  }),</code>
+      <code>  headers: {</code>
+      <code>    'Content-type': 'application/json; charset=UTF-8',</code>
+      <code>  },</code>
+      <code>})</code>
+      <code>.then((response) => response.json())</code>
+      <code>.then((json) => console.log(json));</code>
+    </pre>
+  </section>
+
+  <!-- TODO Отправка данных с сервера -->
+  <section class="slide">
+    <h2>Отправка данных на сервер</h2>
+    <pre style="font-size: 14px;">
+      <code>fetch('https://jsonplaceholder.typicode.com/posts/1', {</code>
+      <code>  method: <mark>'PUT'</mark>,</code>
+      <code>  body: JSON.stringify({</code>
+      <code>    id: 1,</code>
+      <code>    title: 'Свой заголовок',</code>
+      <code>    body: 'Какой-то текст',</code>
+      <code>    userId: 1,</code>
+      <code>  }),</code>
+      <code>  headers: {</code>
+      <code>    'Content-type': 'application/json; charset=UTF-8',</code>
+      <code>  },</code>
+      <code>})</code>
+      <code>.then((response) => response.json())</code>
+      <code>.then((json) => console.log(json));</code>
+    </pre>
+  </section>
+
+  <!-- TODO JSON -->
+  <section class="slide">
+    <h2>JSON</h2>
+    <p><b>JSON</b> (JavaScript Object Notation) — текстовый формат обмена данными, основанный на JavaScript. Но при этом формат независим от JS и может использоваться в любом языке программирования</p>
+    <pre>
+      <code>{</code>
+      <code>  "name": "Иван",</code>
+      <code>  "age": 7</code>
+      <code>}</code>
+    </pre>
+  </section>
+
+  <section class="slide">
+    <h2>JSON</h2>
+    <p>Методы:</p>
+    <ol>
+      <li><b>JSON.stringify()</b> для преобразования объектов в JSON</li>
+      <li><b>JSON.parse()</b> для преобразования JSON обратно в объект</li>
+    </ol>
+  </section>
+
+  <!-- TODO Спецификации -->
+  <section class="slide">
+    <h2>Спецификации</h2>
+    <ol>
+      <li><b>Спецификация DOM</b> — описывает структуру документа, манипуляции с контентом и события</li>
+      <li><b>Спецификация CSSOM</b> — описывает файлы стилей, правила написания стилей и манипуляций с ними, а также то, как это всё связано со страницей</li>
+      <li><b>Спецификация HTML</b> — описывает язык HTML (например, теги) и BOM (объектную модель браузера)</li>
+      <li>Некоторые классы описаны отдельно на https://spec.whatwg.org/</li>
+    </ol>
+  </section>
+
+  <!-- TODO Как искать информацию -->
+  <section class="slide">
+    <h2>Как искать информацию</h2>
+    <p>Для поиска удобно использовать поиск со&nbsp;словами <b>&laquo;WHATWG [термин]&raquo;</b> или <b>&laquo;MDN [термин]&raquo;</b></p>
+  </section>
 
   <section class="slide clear">
     <h2 class="shout">Практика</h2>
@@ -1130,10 +1624,73 @@
 
   <!-- TODO Материалы и ссылки -->
   <section class="slide">
-    <h2>Материалы и ссылки ч.1/6</h2>
+    <h2>Материалы и ссылки ч.1/3</h2>
     <ol>
       <li>
-        <a href="https" target="_blank">Свойство</a>
+        <a href="https://learn.javascript.ru/intro/" target="_blank">Основы JavaScript</a>
+      </li>
+      <li>
+        <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript" target="_blank">JavaScript</a>
+      </li>
+      <li>
+        <a href="https://auth0.com/blog/a-brief-history-of-javascript/" target="_blank">A Brief History of JavaScript</a>
+      </li>
+      <li>
+        <a href="https://developer.mozilla.org/ru/docs/Learn/Getting_started_with_the_web/JavaScript_basics/" target="_blank">Основы JavaScript (MDN)</a>
+      </li>
+      <li>
+        <a href="https://learn.javascript.ru/hello-world/" target="_blank">Подключение JavaScript на страницу</a>
+      </li>
+      <li>
+        <a href="https://learn.javascript.ru/browser-environment" target="_blank">Браузерное окружение, спецификации</a>
+      </li>
+      <li>
+        <a href="https://dom.spec.whatwg.org/" target="_blank">Спецификация DOM</a>
+      </li>
+    </ol>
+  </section>
+
+  <section class="slide">
+    <h2>Материалы и ссылки ч.2/3</h2>
+    <ol>
+      <li>
+        <a href="https://doka.guide/js/dom/" target="_blank">DOM</a>
+      </li>
+      <li>
+        <a href="https://www.w3.org/TR/cssom-1/" target="_blank">Спецификация CSSOM</a>
+      </li>
+      <li>
+        <a href="https://html.spec.whatwg.org/" target="_blank">Спецификация HTML</a>
+      </li>
+      <li>
+        <a href="https://spec.whatwg.org/" target="_blank">Спецификация WHATWG</a>
+      </li>
+      <li>
+        <a href="https://learn.javascript.ru/dom-nodes/" target="_blank">DOM-дерево</a>
+      </li>
+      <li>
+        <a href="https://learn.javascript.ru/searching-elements-dom/" target="_blank">Поиск DOM-элементов</a>
+      </li>
+      <li>
+        <a href="https://learn.javascript.ru/styles-and-classes/" target="_blank">className и classList</a>
+      </li>
+    </ol>
+  </section>
+
+  <section class="slide">
+    <h2>Материалы и ссылки ч.3/3</h2>
+    <ol>
+      <li>
+        <a href="https://learn.javascript.ru/introduction-browser-events/" target="_blank">Браузерные события</a>
+      </li>
+      <li>
+        <a href="https://doka.guide/js/async-in-js/" target="_blank">Асинхронность в JavaScript</a>
+      </li>
+      <li>
+        <a href="https://doka.guide/js/array-foreach/" target="_blank">.forEach()</a>
+      </li>
+      <li>
+        <a href="https://developer.mozilla.org/ru/docs/Web/HTTP/Methods" target="_blank">Методы HTTP запроса</a>
       </li>
     </ol>
   </section>
