@@ -1,5 +1,5 @@
 # Веб-разработка
 
-## Лекция 7: JavaScript-1. Введение
+## Лекция 8: СЕО и оптимизация
 
-[Ссылка на Яндекс Диск](https://disk.yandex.ru/d/jQTlt8PE4IZh1A)
+[Ссылка на Яндекс Диск](https://disk.yandex.ru/d/J_J4Q6XTWwH82A)
