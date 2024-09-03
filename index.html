@@ -907,6 +907,24 @@
   <!-- TODO DOM -->
   <section class="slide">
     <h2>DOM</h2>
+    <figure>
+      <img src="img/house.jpg" width="100%" height="100%" alt="" style="
+      max-height: 370px;
+      margin: 0 auto;
+      display: flex;
+      object-fit: contain;
+    ">
+    </figure>
+  </section>
+  <section class="slide">
+    <h2>DOM</h2>
+    <img src="img/dom.png" width="auto" height="100%" alt="" style="
+      max-height: 380px;
+      display: flex;
+    ">
+  </section>
+  <section class="slide">
+    <h2>DOM</h2>
     <p>DOM (Document Object Model) — это структура, которая создается браузером при загрузке страницы на основе HTML-кода страницы</p>
     <div class="columns two">
       <div class="flex col">
@@ -929,14 +947,6 @@
         </pre>
       </div>
     </div>
-  </section>
-
-  <section class="slide">
-    <h2>DOM</h2>
-    <img src="img/dom.png" width="auto" height="100%" alt="" style="
-      max-height: 380px;
-      display: flex;
-    ">
   </section>
 
   <section class="slide">
@@ -1174,12 +1184,24 @@
         </div>
       </div>
     </div>
-    <pre style="margin-top: 24px; font-size: 16px;">
+   <div>
+    <p
+      style="
+        margin: 0;
+        font-size: 18px;
+        background: thistle;
+        width: max-content;
+        padding: 0 15px;
+      ">
+      <i>Скопировать и вставить в консоль</i>
+    </p>
+    <pre style="font-size: 16px;">
       <code>for (let elem of document.querySelectorAll('*')) {</code>
       <code> elem.addEventListener('click', e => alert(`Погружение: ${elem.tagName}`), <mark class="ignore"> true </mark>);</code>
       <code> elem.addEventListener('click', e => alert(`Всплытие: ${elem.tagName}`));</code>
       <code>}</code>
     </pre>
+   </div>
   </section>
 
   <!-- TODO Example -->
@@ -1605,8 +1627,8 @@
   <section class="slide">
     <h2>Спецификации</h2>
     <ol>
-      <li><b>Спецификация DOM</b> — описывает структуру документа, манипуляции с контентом и события</li>
-      <li><b>Спецификация CSSOM</b> — описывает файлы стилей, правила написания стилей и манипуляций с ними, а также то, как это всё связано со страницей</li>
+      <li><b>Спецификация DOM</b> — про структуру документа, манипуляции с контентом и события</li>
+      <li><b>Спецификация CSSOM</b> — про правила написания стилей и&nbsp;манипуляций с&nbsp;ними, а&nbsp;также&nbsp;то, как это всё связано со&nbsp;страницей</li>
       <li><b>Спецификация HTML</b> — описывает язык HTML (например, теги) и BOM (объектную модель браузера)</li>
       <li>Некоторые классы описаны отдельно на https://spec.whatwg.org/</li>
     </ol>
