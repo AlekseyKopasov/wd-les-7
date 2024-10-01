@@ -235,8 +235,28 @@
 
   <section class="slide">
     <h2>ECMAScript 6 (2015) и 7 (2016)</h2>
-    <p>В 2009 году ECMAScript 3.1 был завершен и одобрен</p>
-    <p>Из-за того, что ECMAScript 4 уже был признан особым вариантом ECMAScript, комитет решил переименовать ECMAScript 3.1 в ECMAScript 5</p>
+    <ul>
+      <li>Let (лексическая) и const (неизменяемая) привязки</li>
+      <li>Стрелочные функции (короткие анонимные функции) и лексическое this</li>
+      <li>
+        Классы (синтаксический сахар поверх прототипов)</li>
+      <li>Шаблонные строки</li>
+      <li>Промисы</li>
+      <li>Генераторы, итерируемые объекты, итераторы и for..of</li>
+      <li>Параметры функций по умолчанию и оператор rest</li>
+    </ul>
+  </section>
+  <section class="slide">
+    <h2>ECMAScript 6 (2015) и 7 (2016)</h2>
+    <ul>
+      <li>Spread-синтакис</li>
+      <li>Деструктуризация</li>
+      <li>Новые коллекции (Set, Map, WeakSet, WeakMap)</li>
+      <li>Типизированные массивы</li>
+      <li>Упрощённая поддержка Unicode</li>
+      <li>Прокси и Reflect</li>
+      <li>Тип данных Symbols</li>
+    </ul>
   </section>
 
   <section class="slide">
@@ -345,7 +365,7 @@
     <p>Для вывода данных в консоль обратитесь к объекту <b>console</b> и его методу <b>log</b>:</p>
     <pre>
       <code>// Вывод информации в консоль</code>
-      <code>console.log("Какая-либо информация");</code>
+      <code>console.log("Я выведу в консоль это предложение");</code>
     </pre>
   </section>
 
@@ -386,16 +406,16 @@
     <h2>Типы данных</h2>
     <div class="columns two">
       <ul>
-        <li>null</li>
         <li>undefined</li>
         <li>boolean</li>
         <li>number</li>
+        <li>string</li>
       </ul>
       <ul>
-        <li>string</li>
         <li>symbol</li>
         <li>BigInt</li>
         <li>object</li>
+        <li>null</li>
       </ul>
     </div>
   </section>
@@ -560,9 +580,9 @@
   <section class="slide">
     <h2>Цикл forEach</h2>
     <pre>
-      <code>array.forEach((item, index, arr) => {</code>
-      <code>  // ... тело цикла ...</code>
-      <code>})</code>
+      <code>array.forEach( <mark>(item, index, arr) => {</mark></code>
+      <code><mark>  // ... тело цикла ...</mark></code>
+      <code><mark>}</mark> )</code>
     </pre>
   </section>
 
@@ -884,11 +904,12 @@
       <div>
         <span>Arrow Functions</span>
         <pre>
-          <code>let <span style="color: rgb(24, 148, 219);">calcSum</span> = () <b>=></b> a + b;</code>
+          <code>let <span style="color: rgb(24, 148, 219);">calcSum</span> = (a, b) <b>=></b> a + b;</code>
         </pre>
         <span> или так:</span>
         <pre>
-          <code>let <span style="color: rgb(24, 148, 219);">calcSum</span> = () <b>=></b> {</code>
+          <code>let <span style="color: rgb(24, 148, 219);">calcSum</span> = (a, b) <b>=></b> {</code>
+          <code>  // еще строчки кода...</code>
           <code>  return a + b;</code>
           <code>}</code>
         </pre>
@@ -990,7 +1011,7 @@
 
   <section class="slide">
     <h2>Удаление существующих HTML элементов</h2>
-    <p>
+    <p class="removed-elems" style="font-size: 15px;">
       <mark>
         <span>Текст 1</span>
         <span>Текст 2</span>
@@ -998,16 +1019,18 @@
         <span>Текст 4</span>
       </mark>
     </p>
-    <pre style="font-size: 16px;">
-      <code>&lt;p&gt;</code>
-      <code>  &lt;span&gt;Текст 1&lt;/span&gt;</code>
-      <code>  &lt;span&gt;Текст 2&lt;/span&gt;</code>
-      <code>  &lt;span&gt;Текст 3&lt;/span&gt;</code>
-      <code>  &lt;span&gt;Текст 4&lt;/span&gt;</code>
+    <pre style="font-size: 15px;">
+      <code>&lt;p class="removed-elems"&gt;</code>
+      <code>  &lt;mark&gt;</code>
+        <code>    &lt;span&gt;Текст 1&lt;/span&gt;</code>
+        <code>    &lt;span&gt;Текст 2&lt;/span&gt;</code>
+        <code>    &lt;span&gt;Текст 3&lt;/span&gt;</code>
+        <code>    &lt;span&gt;Текст 4&lt;/span&gt;</code>
+        <code>  &lt;/mark&gt;</code>
       <code>&lt;/p&gt;</code>
     </pre>
-    <pre style="font-size: 16px;">
-      <code>let parent = document.querySelector('p');</code>
+    <pre style="font-size: 15px;">
+      <code>let parent = document.querySelector('p.removed-elems mark');</code>
       <code>let child = <mark>parent</mark>.querySelector('span');</code>
       <code>parent.removeChild(child);</code>
     </pre>
@@ -1830,7 +1853,7 @@
     </ol>
     <details style="font-size: 18px;">
       <summary>Ответ</summary>
-      <p><b><code></code></b></p>
+      <p><b><code>const nums = [-51, 27, 5];</code></b></p>
     </details>
   </section>
   <section class="slide">
@@ -1862,7 +1885,7 @@
   <section class="slide">
     <h2>Вопросы</h2>
     <p style="font-size: 18px;"><b>Как получить доступ к первому элементу массива?</b></p>
-    <p><mark>const arr = [2, 5, 6];</mark></p>
+    <p>const arr = [ <mark class="ignore">2</mark> , 5, 6];</p>
     <ol style="font-size: 18px;">
       <li><code>arr[0]</code></li>
       <li><code>arr[1]</code></li>
